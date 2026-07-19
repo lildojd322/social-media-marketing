@@ -5,7 +5,7 @@ import Services from './components/Services/Services'
 import Instruments from './components/Instruments/Instruments'
 import ContactUs from './components/ContactUs/ContactUs'
 import ContactForm from './components/ContactForm/ContactForm'
-
+import Footer from './components/Footer/Footer'
 
 export default function Home() {
   return (
@@ -17,6 +17,7 @@ export default function Home() {
       <Instruments />
       <ContactUs/>
       <ContactForm/>
+      <Footer/>
     </div>
   )
 }
