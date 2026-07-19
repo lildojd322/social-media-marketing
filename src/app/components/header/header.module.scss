@@ -57,6 +57,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 2;
     background-color: var(--background);
     height: 100vh;
     transform: translateX(-100%);

@@ -1,0 +1,86 @@
+.main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: clamp(25px, 5.2vw, 100px);
+    justify-content: center;
+    padding: 10px;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        input {
+            width: clamp(280px, 49.63vw, 953px);
+            height: 72px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid var(--informative-gray-text) !important;
+            background-color: var(--background);
+            padding-inline: 24px;
+            font-size: 24px;
+            line-height: 24px;
+            letter-spacing: -1%;
+            font-weight: 400;
+            color: var(--foreground);
+
+            &::placeholder {
+                color: var(--placeholder-gray);
+            }
+        }
+
+        .sendButton {
+            width: clamp(280px, 49.63vw, 953px);
+            outline: none;
+            height: 72px;
+            border: none;
+            transition: 0.3s;
+
+            background-image: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-1));
+            background-size: 200% auto;
+            background-position: left center;
+
+            transition: background-position 0.3s ease;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline: 24px;
+
+            .textIntoButton {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            .stripesIntoButton {
+                display: block;
+                display: flex;
+                column-gap: 3px;
+
+                .strip {
+                    height: 24px;
+                    display: block;
+                    background-color: white;
+                    width: 2px;
+                }
+            }
+
+            &:hover {
+                background-position: right center;
+            }
+        }
+
+        @media(max-width: 620px) {
+
+            input,
+            .sendButton {
+                height: 50px;
+                 font-size: 18px;
+            }
+
+        }
+    }
+
+}
