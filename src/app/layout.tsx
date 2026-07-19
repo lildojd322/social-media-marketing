@@ -62,15 +62,18 @@ export const metadata: Metadata = {
 };
 
 
-const cookieStore = await cookies()
-const themeObj = cookieStore.get('theme')
-const theme = themeObj?.value || 'light'
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  const cookieStore = await cookies()
+  const themeObj = cookieStore.get('theme')
+  const theme = themeObj?.value || 'light'
+
   return (
 
     <html lang="en" className={neueMachina.variable} data-theme={theme}>
