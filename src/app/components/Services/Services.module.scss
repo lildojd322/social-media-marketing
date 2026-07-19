@@ -7,6 +7,8 @@
     justify-content: center;
     align-items: center;
 
+
+
     .header {
         display: flex;
         flex-direction: column;
@@ -34,6 +36,19 @@
         grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
         gap: clamp(20px, 3.64vw, 70px);
 
+        @media(max-width: 1220px) {
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+
+        @media(max-width: 620px) {
+            grid-template-columns: repeat(1, 1fr);
+
+        }
+
+
+
+
         .servicesItem {
             min-height: 406px;
             display: flex;
@@ -42,6 +57,8 @@
             padding: 10px;
             outline: 2px dashed rgba(128, 128, 128, 0.4);
             outline-offset: -1px;
+
+
 
             .servicesCounter {
                 color: var(--additional-gray-text);
@@ -68,6 +85,18 @@
                 font-size: 18px;
                 color: var(--informative-gray-text);
             }
+
+            @media(max-width: 1220px) {
+               min-height: 306px;
+
+            }
+
+            @media(max-width: 620px) {
+                  min-height: 203px;
+
+
+            }
+
         }
     }
 
