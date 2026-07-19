@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
 import localFont from 'next/font/local'
-
+import Script from 'next/script'
 
 const neueMachina = localFont({
   src: [
@@ -66,7 +66,7 @@ const cookieStore = await cookies()
 const themeObj = cookieStore.get('theme')
 const theme = themeObj?.value || 'light'
 
-export default async  function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -74,6 +74,11 @@ export default async  function RootLayout({
   return (
 
     <html lang="en" className={neueMachina.variable} data-theme={theme}>
+      <Script
+        id="iubenda-cookie-banner"
+        src="https://embeds.iubenda.com/widgets/8e61c31e-40b5-4ac2-a703-0e4c719f3d48.js"
+        strategy="afterInteractive"
+      />
       <body >{children}</body>
     </html>
   );

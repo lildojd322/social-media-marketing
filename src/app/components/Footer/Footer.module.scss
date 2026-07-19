@@ -13,13 +13,16 @@
     container-type: inline-size;
 
     .h1 {
-        font-size: clamp(20px, 9.47vw, 182px);
+        font-size: clamp(20px, 6.66vw, 182px);
         font-weight: 500;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         height: clamp(50px, 10.67vw, 205px);
+
+        box-sizing: border-box;
+        padding: 0 1vw;
 
         letter-spacing: -0.15vw;
         white-space: nowrap;
@@ -36,6 +39,11 @@
 
             cursor: pointer;
             background-position: right center;
+        }
+
+        @media (max-width: 1064px) {
+            font-size: clamp(12px, 6.2vw, 100px);
+            letter-spacing: -0.08vw;
         }
     }
 
