@@ -57,7 +57,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-title: "D-E-P STUDIO | SMM Agency Milano",
+  title: "Depden STUDIO | SMM Agency Milano",
   description: "Portiamo nuovi clienti alla tua attività locale. Creiamo brand solidi e di impatto per il mercato di Milano.",
 };
 

@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
                 <div className={styles.linksToMedia}>
                     <Link href="https://t.me/ytskii1">Telegram</Link>
-                    <Link href="">Instagram</Link>
+                    <Link href="https://www.instagram.com/depdenagency/">Instagram</Link>
                 </div>
             </footer>
         </div>
