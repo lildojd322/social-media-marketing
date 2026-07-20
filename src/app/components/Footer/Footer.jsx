@@ -1,11 +1,38 @@
+'use client'
+import { useState } from 'react'
 import Link from 'next/link'
 import Script from 'next/script'
 import styles from './Footer.module.scss'
+import Toast from '../Toast/Toast'
+
 
 const Footer = () => {
+    const [showToast, setShowToast] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
+    const emailText = 'DEPDENAGENCY@GMAIL.COM'
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(emailText)
+
+            setToastMessage('Copiato con successo!')
+            setShowToast(true)
+
+            setTimeout(() => {
+                setShowToast(false)
+            }, 3000)
+        } catch (error) {
+            setToastMessage('Errore durante la copia!')
+            setShowToast(true)
+            setTimeout(() => {
+                setShowToast(false)
+            }, 3000)
+        }
+    }
+
     return (
         <div className={styles.main}>
-            <h1 className={styles.h1}>DEPDENAGENCY@GMAIL.COM</h1>
+            <h1 className={styles.h1} onClick={handleCopy}>DEPDENAGENCY@GMAIL.COM</h1>
             <footer className={styles.footer}>
                 <div className={styles.policy}>
                     <a
@@ -52,7 +79,9 @@ const Footer = () => {
                     <a href="https://t.me/ytskii1">Telegram</a>
                     <a href="https://www.instagram.com/depdenagency/">Instagram</a>
                 </div>
+
             </footer>
+            <Toast message={toastMessage} isOpen={showToast} />
         </div>
     )
 }
