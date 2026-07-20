@@ -7,6 +7,7 @@ import Toast from '../Toast/Toast'
 
 
 const Footer = () => {
+    const [isError, setIsError] = useState(false)
     const [showToast, setShowToast] = useState(false)
     const [toastMessage, setToastMessage] = useState('')
     const emailText = 'DEPDENAGENCY@GMAIL.COM'
@@ -14,19 +15,13 @@ const Footer = () => {
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(emailText)
-
+            setIsError(false)
             setToastMessage('Copiato con successo!')
             setShowToast(true)
-
-            setTimeout(() => {
-                setShowToast(false)
-            }, 3000)
         } catch (error) {
             setToastMessage('Errore durante la copia!')
+            setIsError(true)
             setShowToast(true)
-            setTimeout(() => {
-                setShowToast(false)
-            }, 3000)
         }
     }
 
@@ -81,7 +76,7 @@ const Footer = () => {
                 </div>
 
             </footer>
-            <Toast message={toastMessage} isOpen={showToast} />
+            <Toast message={toastMessage} isOpen={showToast} isError={isError}  onClose={() => setShowToast(false)} />
         </div>
     )
 }
