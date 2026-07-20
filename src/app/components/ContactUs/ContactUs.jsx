@@ -4,7 +4,7 @@ const ContactUs = () => {
     return (
         <div className={styles.main}>
             <h1 className={styles.h1}>Contattaci </h1>
-            <p className={styles.description}>I nostri clienti sono più сhe semplici collaboratori: sono visionari che ci ispirano a superare i limiti del design и dell'innovazione.</p>
+            <p className={styles.description}>I nostri clienti non sono semplici committenti: sono partner visionari che ci spingono a superare i confini del design e dell’innovazione.</p>
 
         </div>
     )

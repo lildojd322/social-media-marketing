@@ -7,7 +7,7 @@ const Hero = () => {
                 Portiamo nuovi clienti alla tua attività locale
             </h1>
             <p className={styles.rightText}>
-                Creiamo brand solidi и di impatto per il mercato di Milano.
+                Creiamo brand solidi e di impatto per il mercato di Milano.
             </p>
         </div>
     )

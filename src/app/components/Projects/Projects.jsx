@@ -14,7 +14,7 @@ const Projects = () => {
             <div className={styles.main}>
                 <header className={styles.header}>
                     <h2 className={styles.h2}>Progetti</h2>
-                    <p className={styles.countProjects}>Altri +500</p>
+                    <p className={styles.countProjects}>Oltre 500 progetti</p>
                 </header>
                 <ul className={styles.projects}>
                     <li className={styles.project}>

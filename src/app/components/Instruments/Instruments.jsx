@@ -4,10 +4,10 @@ const Instruments = () => {
     return (
         <div className={styles.main}>
             <div className={styles.textSection}>
-                <h2 className={styles.h2}>//DIGITAL ECOSYSTEM</h2>
+                <h2 className={styles.h2}>//ECOSISTEMA DIGITALE</h2>
                 <h1 className={styles.h1}>L'ecosistema digitale che fa crescere il tuo brand</h1>
                 <p className={styles.description}>
-                    Utilizziamo le migliori piattaforme di content creation, analisi e design per trasformare la tua visione в contenuti d’impatto, capaci di connettersi davvero con la tua community
+                    Utilizziamo le migliori piattaforme di content creation, analisi e design per trasformare la tua visione in contenuti d’impatto, capaci di connettersi davvero con la tua community
                 </p>
 
             </div>
