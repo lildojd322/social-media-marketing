@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 const Projects = () => {
     return (
-        <div className={styles.container}>
+        <div id="projects" className={styles.container}>
 
             <span className={styles.hr}> </span>
             <div className={styles.main}>
@@ -22,7 +22,7 @@ const Projects = () => {
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}>24 Giu 2024</p>
-                            <Link href={''} className={styles.name}> Helyam Rebranding</Link>
+                            <a href={''} className={styles.name}> Helyam Rebranding</a>
                         </div>
                     </li>
                     <li className={styles.project}>
@@ -30,7 +30,7 @@ const Projects = () => {
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}>24 Ott 2024</p>
-                            <Link href={''} className={styles.name}> Helyam Rebranding</Link>
+                            <a href={''} className={styles.name}> Helyam Rebranding</a>
                         </div>
                     </li>
                     <li className={styles.project}>
@@ -38,7 +38,7 @@ const Projects = () => {
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}>24 Gen 2024</p>
-                            <Link href={''} className={styles.name}> Helyam Rebranding</Link>
+                            <a href={''} className={styles.name}> Helyam Rebranding</a>
                         </div>
                     </li>
                     <li className={styles.project}>
@@ -46,7 +46,7 @@ const Projects = () => {
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}> 24 Gen 2024</p>
-                            <Link href={''} className={styles.name}> Helyam Rebranding</Link>
+                            <a href={''} className={styles.name}> Helyam Rebranding</a>
                         </div>
                     </li>
                 </ul>

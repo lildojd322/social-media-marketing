@@ -49,8 +49,8 @@ const Footer = () => {
                     © 2024 depden. Tutti i diritti riservati
                 </div>
                 <div className={styles.linksToMedia}>
-                    <Link href="https://t.me/ytskii1">Telegram</Link>
-                    <Link href="https://www.instagram.com/depdenagency/">Instagram</Link>
+                    <a href="https://t.me/ytskii1">Telegram</a>
+                    <a href="https://www.instagram.com/depdenagency/">Instagram</a>
                 </div>
             </footer>
         </div>

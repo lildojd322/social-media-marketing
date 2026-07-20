@@ -11,13 +11,7 @@ const ContactForm = () => {
                 <input className={styles.messageInput} type="text" placeholder="Messaggio" />
                 <button className={styles.sendButton}>
                     <span className={styles.textIntoButton}>Invia</span>
-                    <div className={styles.stripesIntoButton}>
-                        <span className={styles.strip}></span>
-                        <span className={styles.strip}></span>
-                        <span className={styles.strip}></span>
-                        <span className={styles.strip}></span>
-                        <span className={styles.strip}></span>
-                    </div>
+
                 </button>
 
             </form>
