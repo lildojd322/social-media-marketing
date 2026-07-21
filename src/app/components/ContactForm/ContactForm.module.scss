@@ -8,18 +8,16 @@
     padding: 10px;
 
 
-  .error {
+    .error {
         margin-top: 15px;
         color: rgb(206, 54, 54);
         font-size: 16px;
         font-weight: 500;
-        
-        // Начальное скрытое состояние
+
         opacity: 0;
         visibility: hidden;
         transition: 0.3s ease-in-out;
 
-        // Когда в JS добавляется класс .visible, текст плавно проявляется
         &.visible {
             opacity: 1;
             visibility: visible;
@@ -74,9 +72,16 @@
             }
 
 
+
             &:hover {
                 background-position: right center;
             }
+
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
         }
 
         @media(max-width: 620px) {

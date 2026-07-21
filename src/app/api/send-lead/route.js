@@ -5,22 +5,23 @@ export async function POST(request) {
 
 
     const redisKey = `ratelimit:${ip}`
+    let currentRequests = 0
+
     try {
-        const currentRequests = await redis.incr(redisKey)
+        currentRequests = await redis.incr(redisKey)
         if (currentRequests === 1) {
             await redis.expire(redisKey, 3600)
-        }
-
-        if (currentRequests > 1) {
-            return new NextResponse(
-                JSON.stringify({ error: "Troppe richieste. Per favore, riprova più tardi." }),
-                { status: 429, headers: { 'Content-Type': 'application/json' } }
-            )
         }
     } catch (error) {
         console.error('Upstash Redis Error:', error)
     }
 
+    if (currentRequests > 10) {
+        return new NextResponse(
+            JSON.stringify({ error: "È possibile inviare solo una richiesta all'ora. Per favore, riprova più tardi." }),
+            { status: 429, headers: { 'Content-Type': 'application/json' } }
+        )
+    }
 
 
 
@@ -38,9 +39,17 @@ export async function POST(request) {
 
         const telegramMessage = `
 <b>🔔 Новая заявка!</b>
-<b>Имя:</b> ${name}
-<b>Email:</b> ${email}
-<b>Сообщение:</b> ${message}
+---------------------
+
+🐒 Имя: <b> ${name}</b>
+
+---------------------
+
+🐔 Email: <b>${email}</b>
+
+---------------------
+
+💩 Сообщение: <b> ${message}</b>
 `;
 
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`

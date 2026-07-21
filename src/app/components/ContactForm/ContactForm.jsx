@@ -9,10 +9,12 @@ const ContactForm = () => {
     const [message, setMessage] = useState('')
     const [showToast, setShowToast] = useState(false)
     const [isError, setIsError] = useState(false)
+    const [isSubmiting, setIsSubmiting] = useState(false)
 
     const handleSubmit = async (event) => {
 
         event.preventDefault()
+        setIsSubmiting(true)
         setShowToast(false)
 
         const formElement = event.currentTarget
@@ -26,6 +28,7 @@ const ContactForm = () => {
             setIsError(true)
             setShowToast(true)
             return
+            setIsSubmiting(false)
         }
 
         const { email, name, message: userMessage } = validation.data
@@ -43,17 +46,20 @@ const ContactForm = () => {
                 setMessage(resData.error || "Si è verificato un errore. Riprova più tardi.")
                 setIsError(true)
                 setShowToast(true)
+                setIsSubmiting(false)
                 return
             }
 
             setMessage('La tua richiesta è stata inviata!')
             setIsError(false)
             setShowToast(true)
+            setIsSubmiting(false)
             formElement.reset()
 
         } catch (err) {
             setMessage("Errore di connessione. Controlla la tua rete.")
             setIsError(true)
+            setIsSubmiting(false)
             setShowToast(true)
         }
     }
@@ -64,7 +70,7 @@ const ContactForm = () => {
                 <input className={styles.nameInput} id="name" name="name" type="text" placeholder="Nome" />
                 <input className={styles.emailInput} id="email" name="email" type="email" placeholder="Email" />
                 <input className={styles.messageInput} id="message" name="message" type="text" placeholder="Messaggio" />
-                <button className={styles.sendButton}>
+                <button className={`${styles.sendButton} ${isSubmiting && styles.disabled}`} disabled={isSubmiting}>
                     <span className={styles.textIntoButton}>Invia</span>
                 </button>
             </form>
@@ -79,7 +85,7 @@ const ContactForm = () => {
                 onClose={() => setShowToast(false)}
             />
 
-           
+
 
         </div>
     )
