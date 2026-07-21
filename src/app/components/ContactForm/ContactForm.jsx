@@ -9,12 +9,11 @@ const ContactForm = () => {
     const [message, setMessage] = useState('')
     const [showToast, setShowToast] = useState(false)
     const [isError, setIsError] = useState(false)
-    const [isSubmiting, setIsSubmiting] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const handleSubmit = async (event) => {
 
         event.preventDefault()
-        setIsSubmiting(true)
         setShowToast(false)
 
         const formElement = event.currentTarget
@@ -28,16 +27,16 @@ const ContactForm = () => {
             setIsError(true)
             setShowToast(true)
             return
-            setIsSubmiting(false)
         }
 
-        const { email, name, message: userMessage } = validation.data
+        const { email, name, message: userMessage, honey_pot_field } = validation.data
 
         try {
+            setIsSubmitting(true)
             const response = await fetch('/api/send-lead/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, name, message: userMessage })
+                body: JSON.stringify({ email: email, name: name, message: userMessage, honey_pot_field: honey_pot_field})
             })
 
             const resData = await response.json()
@@ -46,20 +45,20 @@ const ContactForm = () => {
                 setMessage(resData.error || "Si è verificato un errore. Riprova più tardi.")
                 setIsError(true)
                 setShowToast(true)
-                setIsSubmiting(false)
+                setIsSubmitting(false)
                 return
             }
 
             setMessage('La tua richiesta è stata inviata!')
             setIsError(false)
             setShowToast(true)
-            setIsSubmiting(false)
+            setIsSubmitting(false)
             formElement.reset()
 
         } catch (err) {
             setMessage("Errore di connessione. Controlla la tua rete.")
             setIsError(true)
-            setIsSubmiting(false)
+            setIsSubmitting(false)
             setShowToast(true)
         }
     }
@@ -67,10 +66,13 @@ const ContactForm = () => {
     return (
         <div className={styles.main}>
             <form onSubmit={handleSubmit} className={styles.form} action="">
+                <div style={{ display: 'none' }} aria-hidden="true">
+                    <input type="text" name="honey_pot_field" tabIndex="-1" autoComplete="off" />
+                </div>
                 <input className={styles.nameInput} id="name" name="name" type="text" placeholder="Nome" />
                 <input className={styles.emailInput} id="email" name="email" type="email" placeholder="Email" />
                 <input className={styles.messageInput} id="message" name="message" type="text" placeholder="Messaggio" />
-                <button className={`${styles.sendButton} ${isSubmiting && styles.disabled}`} disabled={isSubmiting}>
+                <button className={`${styles.sendButton} ${isSubmitting && styles.disabled}`} disabled={isSubmitting}>
                     <span className={styles.textIntoButton}>Invia</span>
                 </button>
             </form>

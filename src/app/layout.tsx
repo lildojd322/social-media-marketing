@@ -57,8 +57,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Depden agency | SMM Agency Milano",
-  description: "Portiamo nuovi clienti alla tua attività locale. Creiamo brand solidi e di impatto per il mercato di Milano.",
+  title: "Depden agency | SMM Agency Italia",
+  description: "Creiamo brand solidi e memorabili per le aziende in tutta Italia",
+
+  openGraph: {
+    title: "Depden agency | SMM Agency Italia",
+    description: "Creiamo brand solidi e memorabili per le aziende in tutta Italia",
+    url: 'https://depden.it',
+    siteName: 'Depden Agency',
+    locale: 'it_IT',
+    type: 'website',
+  },
 };
 
 

@@ -30,8 +30,12 @@ export async function POST(request) {
     try {
 
 
-        const { name, email, message } = await request.json()
+        const { name, email, message, honey_pot_field } = await request.json()
 
+
+        if (honey_pot_field && honey_pot_field.trim() !== '') {
+            return NextResponse.json({ success: true })
+        }
 
         const BOT_TOKEN = `${process.env.TELEGRAM_BOT_TOKEN}`
         const CHAT_ID = `${process.env.TELEGRAM_GROUP_ID}`
