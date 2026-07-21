@@ -1,7 +1,34 @@
 import { NextResponse } from 'next/server'
-
+import { redis } from '@/lib/redis'
 export async function POST(request) {
+    const ip = request.headers.get('x-forwarded-for') || '127.0.0.1'
+
+
+    const redisKey = `ratelimit:${ip}`
     try {
+        const currentRequests = await redis.incr(redisKey)
+        if (currentRequests === 1) {
+            await redis.expire(redisKey, 3600)
+        }
+
+        if (currentRequests > 1) {
+            return new NextResponse(
+                JSON.stringify({ error: "Troppe richieste. Per favore, riprova più tardi." }),
+                { status: 429, headers: { 'Content-Type': 'application/json' } }
+            )
+        }
+    } catch (error) {
+        console.error('Upstash Redis Error:', error)
+    }
+
+
+
+
+
+
+    try {
+
+
         const { name, email, message } = await request.json()
 
 
