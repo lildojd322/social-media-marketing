@@ -85,7 +85,7 @@ export default async function RootLayout({
 
   return (
 
-    <html lang="en" className={neueMachina.variable} data-theme={theme}>
+    <html lang="it" className={neueMachina.variable} data-theme={theme}>
       <Script  strategy="afterInteractive"  id="iubenda-cookie-banner" src="https://embeds.iubenda.com/widgets/fc7a1e77-6821-4e67-8661-67a34612401b.js"/>
 
       <body >{children}</body>

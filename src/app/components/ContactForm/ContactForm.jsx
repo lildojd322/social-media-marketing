@@ -72,15 +72,17 @@ const ContactForm = () => {
                 <input className={styles.nameInput} id="name" name="name" type="text" placeholder="Nome" />
                 <input className={styles.emailInput} id="email" name="email" type="email" placeholder="Email" />
                 <input className={styles.messageInput} id="message" name="message" type="text" placeholder="Messaggio" />
+
                 <button className={`${styles.sendButton} ${isSubmitting ? styles.loading : ''}`} disabled={isSubmitting}>
                     <span className={styles.textIntoButton}>Invia</span>
                     <span className={styles.spinner}></span>
                 </button>
+                <p className={`${styles.error} ${isError && showToast ? styles.visible : ''}`}>
+                    {message}
+                </p>
             </form>
 
-            <p className={`${styles.error} ${isError && showToast ? styles.visible : ''}`}>
-                {message}
-            </p>
+
             <Toast
                 isOpen={showToast && !isError}
                 isError={false}
