@@ -45,15 +45,15 @@ export async function POST(request) {
 <b>🔔 Новая заявка!</b>
 ---------------------
 
-🐒 Имя: <b> ${name}</b>
+👤 Имя: <b> ${name}</b>
 
 ---------------------
 
-🐔 Email: <b>${email}</b>
+📪 Email: <b>${email}</b>
 
 ---------------------
 
-💩 Сообщение: <b> ${message}</b>
+📃 Сообщение: <b> ${message}</b>
 `;
 
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`

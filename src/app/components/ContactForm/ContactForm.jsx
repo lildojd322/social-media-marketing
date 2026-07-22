@@ -36,7 +36,7 @@ const ContactForm = () => {
             const response = await fetch('/api/send-lead/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, name: name, message: userMessage, honey_pot_field: honey_pot_field})
+                body: JSON.stringify({ email: email, name: name, message: userMessage, honey_pot_field: honey_pot_field })
             })
 
             const resData = await response.json()
@@ -72,8 +72,9 @@ const ContactForm = () => {
                 <input className={styles.nameInput} id="name" name="name" type="text" placeholder="Nome" />
                 <input className={styles.emailInput} id="email" name="email" type="email" placeholder="Email" />
                 <input className={styles.messageInput} id="message" name="message" type="text" placeholder="Messaggio" />
-                <button className={`${styles.sendButton} ${isSubmitting && styles.disabled}`} disabled={isSubmitting}>
+                <button className={`${styles.sendButton} ${isSubmitting ? styles.loading : ''}`} disabled={isSubmitting}>
                     <span className={styles.textIntoButton}>Invia</span>
+                    <span className={styles.spinner}></span>
                 </button>
             </form>
 

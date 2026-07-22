@@ -54,7 +54,7 @@
             height: 72px;
             border: none;
             transition: 0.3s;
-
+            position: relative;
             background-image: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-1));
             background-size: 200% auto;
             background-position: left center;
@@ -69,6 +69,38 @@
             .textIntoButton {
                 font-size: 24px;
                 font-weight: 700;
+                display: inline-block;
+                transition: opacity 0.2s ease, visibility 0.2s ease;
+            }
+
+            .spinner {
+                display: none;
+                width: 20px;
+                height: 20px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                border-top-color: #fff;
+                animation: spin 0.8s linear infinite;
+
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -10px;
+                margin-left: -10px;
+            }
+
+            &.loading {
+                opacity: 0.5;
+                cursor: not-allowed;
+
+                .textIntoButton {
+                    visibility: hidden;
+                    opacity: 0;
+                }
+
+                .spinner {
+                    display: block;
+                }
             }
 
 
@@ -95,4 +127,10 @@
         }
     }
 
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
