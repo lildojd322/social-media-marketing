@@ -38,7 +38,7 @@ export async function POST(request) {
         }
 
         let appNumber = 0
-        bidNumber = await redis.incr('global:applications:total_count')
+        appNumber = await redis.incr('global:applications:total_count')
         const activeCount = await redis.incr('global:applications:active')
 
 
@@ -47,7 +47,7 @@ export async function POST(request) {
 
 
         const telegramMessage = `
-<b>🔔 Новая заявка №${bidNumber}!</b>
+<b>🔔 Новая заявка №${appNumber}!</b>
 ⚠️<i>Необработанных заявок в очереди: ${activeCount}</i>
 ---------------------
 
