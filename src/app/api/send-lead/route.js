@@ -38,12 +38,9 @@ export async function POST(request) {
         }
 
         let bidNumber = 0
-        try {
-            bidNumber = await redis.incr('global:applications:total_count')
-            const activeCount = await redis.incr('global:applications:active')
-        } catch (error) {
+        bidNumber = await redis.incr('global:applications:total_count')
+        const activeCount = await redis.incr('global:applications:active')
 
-        }
 
         const BOT_TOKEN = `${process.env.TELEGRAM_BOT_TOKEN}`
         const CHAT_ID = `${process.env.TELEGRAM_GROUP_ID}`
