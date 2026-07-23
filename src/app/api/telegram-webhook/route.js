@@ -29,9 +29,10 @@ export async function POST(request) {
 
             let oldText = message.text || ""
 
+            const safeOldText = oldText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-            const updatedText = `<b>✅ ЗАЯВКА №${appNumber} ОБРАБОТАНА</b>\n` +
-                `<s>${oldText.split('\n').slice(2).join('\n')}</s>`
+            const updatedText = `<b>✅ ЗАЯВКА №${appNumber} ОБРАБОТАНА</b>\n\n` +
+                `<s>${safeOldText}</s>`;
 
             const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
 

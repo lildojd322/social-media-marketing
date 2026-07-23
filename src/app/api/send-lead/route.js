@@ -37,7 +37,7 @@ export async function POST(request) {
             return NextResponse.json({ success: true })
         }
 
-        let bidNumber = 0
+        let appNumber = 0
         bidNumber = await redis.incr('global:applications:total_count')
         const activeCount = await redis.incr('global:applications:active')
 
