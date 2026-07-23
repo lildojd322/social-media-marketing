@@ -62,3 +62,6 @@ export async function POST(request) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
+
+// SET global:applications:total_count 0
+// SET global:applications:active 0

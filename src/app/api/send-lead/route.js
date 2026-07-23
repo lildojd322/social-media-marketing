@@ -48,7 +48,7 @@ export async function POST(request) {
 
         const telegramMessage = `
 <b>🔔 Новая заявка №${appNumber}!</b>
-⚠️<i>Необработанных заявок в очереди: ${activeCount}</i>
+⚠️<i>Необработанных заявок: ${activeCount}</i>
 ---------------------
 
 👤 Имя: <b> ${name}</b>
