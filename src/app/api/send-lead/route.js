@@ -37,12 +37,21 @@ export async function POST(request) {
             return NextResponse.json({ success: true })
         }
 
+        let bidNumber = 0
+        try {
+            bidNumber = await redis.incr('global:applications:total_count')
+            const activeCount = await redis.incr('global:applications:active')
+        } catch (error) {
+
+        }
+
         const BOT_TOKEN = `${process.env.TELEGRAM_BOT_TOKEN}`
         const CHAT_ID = `${process.env.TELEGRAM_GROUP_ID}`
 
 
         const telegramMessage = `
-<b>🔔 Новая заявка!</b>
+<b>🔔 Новая заявка №${bidNumber}!</b>
+⚠️<i>Необработанных заявок в очереди: ${activeCount}</i>
 ---------------------
 
 👤 Имя: <b> ${name}</b>
@@ -58,6 +67,21 @@ export async function POST(request) {
 
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`
 
+
+        const replyMarkup = {
+            inline_keyboard: [
+                [
+                    {
+                        text: "✅ Просмотрено",
+                        callback_data: `done:${appNumber}`
+                    }
+                ]
+            ]
+        }
+
+
+
+
         const response = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -65,6 +89,7 @@ export async function POST(request) {
                 chat_id: CHAT_ID,
                 text: telegramMessage,
                 parse_mode: "HTML",
+                reply_markup: replyMarkup
             })
         })
 
