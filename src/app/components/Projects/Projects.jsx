@@ -14,11 +14,11 @@ const Projects = () => {
             <div className={styles.main}>
                 <header className={styles.header}>
                     <h2 className={styles.h2}>Progetti</h2>
-                   {/*  <p className={styles.countProjects}>Oltre 500 progetti</p> */}
+                    {/*  <p className={styles.countProjects}>Oltre 500 progetti</p> */}
                 </header>
                 <ul className={styles.projects}>
                     <li className={styles.project}>
-                        <Image className={styles.img} src={zaglushka1} alt="project img" />
+                        <Image className={styles.img} src={zaglushka1} alt="project img" priority loading="eager"   placeholder="blur"/>
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}>24 Giu 2024</p>
@@ -26,7 +26,7 @@ const Projects = () => {
                         </div>
                     </li>
                     <li className={styles.project}>
-                        <Image className={styles.img} src={zaglushka2} alt="project img" />
+                        <Image className={styles.img} src={zaglushka2} alt="project img" priority loading="eager"  placeholder="blur" />
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}>24 Ott 2024</p>
@@ -34,7 +34,7 @@ const Projects = () => {
                         </div>
                     </li>
                     <li className={styles.project}>
-                        <Image className={styles.img} src={zaglushka3} alt="project img" />
+                        <Image className={styles.img} src={zaglushka3} alt="project img " priority loading="eager"  placeholder="blur" />
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}>24 Gen 2024</p>
@@ -42,7 +42,7 @@ const Projects = () => {
                         </div>
                     </li>
                     <li className={styles.project}>
-                        <Image className={styles.img} src={zaglushka4} alt="project img" />
+                        <Image className={styles.img} src={zaglushka4} alt="project img" priority loading="eager"  placeholder="blur" />
 
                         <div className={styles.infoBlock} >
                             <p className={styles.date}> 24 Gen 2024</p>
