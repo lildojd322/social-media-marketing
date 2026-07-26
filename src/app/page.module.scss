@@ -1,0 +1,10 @@
+.main {
+    position: relative;
+
+    @media (max-width: 905px) {
+        & {
+            padding-top: 75px;
+        }
+
+    }
+}

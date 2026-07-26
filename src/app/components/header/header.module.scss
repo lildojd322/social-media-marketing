@@ -38,6 +38,7 @@
     .linksListItem {
         position: relative;
         transition: 0.3s;
+
         a {
             font-size: 20px;
         }
@@ -79,7 +80,7 @@
         width: 24px;
         height: 2px;
         display: block;
-        background-color: var(--foreground);
+        background-color: var(--orange);
         transition: all 0.3s ease-in-out;
     }
 
@@ -110,7 +111,9 @@
     gap: 30px;
 
     .burgerLink {
-        font-size: 24px;
+        font-size: 27px;
+        text-align: center;
+        border-bottom: 2px dashed var(--orange);
     }
 }
 
@@ -148,6 +151,7 @@
 
 @media (min-width: 905px) {
 
+
     .checkbox:checked~.burgerNav,
     .burgerNav {
         transform: translateX(-100%) !important;
@@ -158,10 +162,19 @@
     }
 }
 
-
 @media (max-width: 905px) {
     .main {
         height: 75px;
+        position: fixed;
+        top: 0;
+        border-bottom: 2px solid var(--orange);
+        left: 0;
+        width: 100%;
+        z-index: 5;
+        background-color: var(--background);
+        margin-inline: 0;
+        padding-inline: clamp(20px, 7.5vw, 144px);
+        box-sizing: border-box;
     }
 
     .linksList {
@@ -172,6 +185,20 @@
         display: flex;
     }
 
+    .burgerNav {
+        z-index: 6;
+    }
+
+
+    .checkbox:checked~.burgerLabel {
+        justify-content: center;
+        position: fixed;
+        top: 28px;
+
+        right: clamp(20px, 7.5vw, 144px);
+        z-index: 7;
+
+    }
 }
 
 @media (max-width: 420px) {

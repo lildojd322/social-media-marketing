@@ -6,10 +6,11 @@ import Instruments from './components/Instruments/Instruments'
 import ContactUs from './components/ContactUs/ContactUs'
 import ContactForm from './components/ContactForm/ContactForm'
 import Footer from './components/Footer/Footer'
+import styles from './page.module.scss'
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.main} >
       <Header />
       <Hero />
       <Projects />
