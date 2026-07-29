@@ -9,3 +9,12 @@ export const bidSchema = z.object({
         .min(8, 'Il messaggio deve contenere almeno 8 caratteri') 
         .max(350, 'Il messaggio non può superare i 350 caratteri'), 
 })
+
+
+export const adminSchema = z.object({
+    email: z.string().email("Formato email non valido"),
+    password: z.string()
+        .min(6, 'Il password deve contenere almeno 6 caratteri') 
+        .max(20, 'Il password non può superare i 20 caratteri'), 
+
+})

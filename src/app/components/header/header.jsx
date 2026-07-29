@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import styles from './header.module.scss'
+import Link from 'next/link'
 
-const Header = () => {
+
+const Header = ({ adminCookie }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const closeMenu = () => {
@@ -25,6 +27,9 @@ const Header = () => {
                 <li className={styles.linksListItem}>
                     <a href="#contactus">Contattaci</a>
                 </li>
+                {adminCookie && <li className={`${styles.dashboardLink} ${styles.linksListItem}`}>
+                    <Link href={'/admin/dashboard'}> dashboard</Link>
+                </li>}
             </ul>
 
             <div>
@@ -46,6 +51,9 @@ const Header = () => {
                         <li className={styles.burgerLink}>
                             <a onClick={closeMenu} href="#contactus">Contattaci</a>
                         </li>
+                        {adminCookie && <li className={`${styles.burgerLink} ${styles.dashboardLink}`}>
+                            <Link href={'/admin/dashboard'}> dashboard</Link>
+                        </li>}
                     </ul>
                 </div>
             </div>

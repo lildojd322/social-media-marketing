@@ -7,18 +7,24 @@ import ContactUs from './components/ContactUs/ContactUs'
 import ContactForm from './components/ContactForm/ContactForm'
 import Footer from './components/Footer/Footer'
 import styles from './page.module.scss'
+import { cookies } from 'next/headers'
 
-export default function Home() {
+
+export default async function Home() {
+
+  const cookiesStore = await cookies()
+  const adminCookie = cookiesStore.get('admin_session')?.value
+
   return (
     <div className={styles.main} >
-      <Header />
+      <Header adminCookie={adminCookie} />
       <Hero />
       <Projects />
       <Services />
       <Instruments />
-      <ContactUs/>
-      <ContactForm/>
-      <Footer/>
+      <ContactUs />
+      <ContactForm />
+      <Footer />
     </div>
   )
 }

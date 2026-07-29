@@ -1,0 +1,154 @@
+$background: #f4eae1;
+$text-color: #0b2f1d;
+$accent-green: #1a5c38;
+
+.dashboardContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    font-family: inherit;
+
+    .title {
+        font-size: 32px;
+        font-weight: 500;
+        color: $text-color;
+        margin-bottom: 40px;
+        letter-spacing: -0.5px;
+    }
+}
+
+.requestList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.requestCard {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba($text-color, 0.2);
+    padding-bottom: 24px;
+    gap: 16px;
+
+    .requestHeader {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 18px;
+
+        .id {
+            font-weight: 700;
+            color: $text-color;
+            min-width: 40px;
+        }
+
+        .username {
+            font-weight: 600;
+            color: $text-color;
+        }
+
+        .email {
+            color: rgba($text-color, 0.6);
+            font-size: 16px;
+        }
+    }
+
+    .messageBlock {
+        .messageText {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba($text-color, 0.8);
+            max-width: 700px;
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-start;
+
+        .elaborateButton {
+            outline: none;
+            height: 48px;
+            border: 1px solid $accent-green;
+            background-color: transparent;
+            color: $accent-green;
+            font-size: 16px;
+            font-weight: 600;
+            padding-inline: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: $accent-green;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboardContainer {
+        padding: 40px 16px;
+        
+        .title {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+    }
+
+    .requestCard {
+        .requestHeader {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            
+            .id {
+                font-size: 16px;
+            }
+        }
+        
+        .elaborateButton {
+            width: 100%;
+        }
+    }
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+
+    .navLink {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba($text-color, 0.7);
+        cursor: pointer;
+        transition: color 0.2s ease, text-decoration 0.2s ease;
+        text-decoration: none;
+
+        &:hover {
+            color: $text-color;
+        }
+
+        &.activeLink {
+            color: $text-color;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+    }
+
+    .separator {
+        color: rgba($text-color, 0.3);
+        font-size: 16px;
+        user-select: none;
+    }
+}

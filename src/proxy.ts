@@ -36,11 +36,23 @@ export async function proxy(request: NextRequest) {
 
     const { pathname } = request.nextUrl
 
+
+
+
     if (pathname.startsWith('/api')) {
         const limitResponse = await handleRateLimit(request)
         if (limitResponse) {
             return limitResponse
         }
     }
+
+    if (pathname.startsWith('/admin/dashboard')) {
+        const adminCookie = request.cookies.get('admin_session')?.value
+
+        if (!adminCookie || adminCookie !== process.env.ADMIN_SECRET_TOKEN) {
+            return NextResponse.redirect(new URL('/admin', request.url))
+        }
+    }
+
     return NextResponse.next()
 }

@@ -206,3 +206,22 @@
         font-size: 20px;
     }
 }
+
+.dashboardLink {
+        box-sizing: border-box;
+        white-space: nowrap;
+        background-image: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-1));
+        background-size: 200% auto;
+        background-position: left center;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        transition: background-position 0.4s ease;
+
+        &:hover {
+
+            cursor: pointer;
+            background-position: right center;
+        }
+}
