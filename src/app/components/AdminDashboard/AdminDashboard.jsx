@@ -2,6 +2,8 @@
 import SubmitButton from '../SubmitButton/SubmitButton'
 import { useEffect, useState } from 'react'
 import styles from './AdminDashboard.module.scss'
+import BidsLoading from '../BidsLoading/BidsLoading'
+
 
 const AdminDashboard = () => {
     const [bids, setBids] = useState([])
@@ -9,7 +11,7 @@ const AdminDashboard = () => {
     const [bidsCount, setBidsCount] = useState(0)
     const [error, setError] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
-
+    const [loading, setLoading] = useState(true)
 
     const changeBidsState = () => {
         if (currentBids === 'normal') {
@@ -25,13 +27,19 @@ const AdminDashboard = () => {
             try {
                 const response = await fetch('/api/bids/get')
                 const currentBids = await response.json()
-                setBids(currentBids.bids)
+                setBids(currentBids.bids || [])
                 setBidsCount(currentBids.activeCount)
+
             } catch (error) {
                 console.error("api error", error)
+                setBids([])
+            }
+            finally {
+                setLoading(false)
             }
         }
         fetchBids()
+
     }, [])
 
 
@@ -77,50 +85,54 @@ const AdminDashboard = () => {
 
 
     return (
-        <div className={styles.dashboardContainer}>
-            <nav className={styles.navigation}>
-                <div onClick={changeBidsState}
-                    className={`${styles.navLink} ${currentBids === 'normal' && styles.activeLink}`}
 
-                >
-                    Richieste correnti
-                </div>
-                <span className={styles.separator}>/</span>
-                <div onClick={changeBidsState}
-                    className={`${styles.navLink} ${currentBids === 'archive' && styles.activeLink}`}
+        <>
+            {loading ? <BidsLoading /> : <div className={styles.dashboardContainer}>
+                <nav className={styles.navigation}>
+                    <div onClick={changeBidsState}
+                        className={`${styles.navLink} ${currentBids === 'normal' && styles.activeLink}`}
 
-                >
-                    Archivio
-                </div>
-            </nav>
+                    >
+                        Richieste correnti
+                    </div>
+                    <span className={styles.separator}>/</span>
+                    <div onClick={changeBidsState}
+                        className={`${styles.navLink} ${currentBids === 'archive' && styles.activeLink}`}
 
-            <h2 className={styles.title}>Richieste non elaborate: {bidsCount}</h2>
-            <ul className={styles.requestList}>
+                    >
+                        Archivio
+                    </div>
+                </nav>
 
-                {filteredBids && filteredBids.length > 0 ? filteredBids.map((bid) => {
-                    return <li key={bid.id} className={`${styles.requestCard} ${bid.is_archived && styles.archivedCard}`}>
-                        <div className={styles.requestHeader}>
-                            <span className={styles.id}>№{bid.id}</span>
-                            <span className={styles.date}> {new Date(bid.created_at).toLocaleDateString('ru-RU')}</span>
-                            <span className={styles.username}>{bid.name}</span>
-                            <span className={styles.email}>{bid.email}</span>
-                        </div>
-                        <div className={styles.messageBlock}>
-                            <p className={styles.messageText}>
-                                {bid.message}
-                            </p>
-                        </div>
-                        <div className={styles.actions}>
-                            <SubmitButton isSubmitting={isSubmitting === bid.id} onClick={() => {
-                                handleClick(bid.id)
-                            }} className={styles.elaborateButton}>Richiesta elaborata</SubmitButton>
-                        </div>
-                    </li>
-                }) : <p className={styles.noRequestBlock}> No active requests</p>}
+                <h2 className={styles.title}>Richieste non elaborate: {bidsCount}</h2>
+                <ul className={styles.requestList}>
+                    {filteredBids && filteredBids.length > 0 ? filteredBids.map((bid) => {
+                        return <li key={bid.id} className={`${styles.requestCard} ${bid.is_archived && styles.archivedCard}`}>
+                            <div className={styles.requestHeader}>
+                                <span className={styles.id}>№{bid.id}</span>
+                                <span className={styles.date}> {new Date(bid.created_at).toLocaleDateString('ru-RU')}</span>
+                                <span className={styles.username}>{bid.name}</span>
+                                <span className={styles.email}>{bid.email}</span>
+                            </div>
+                            <div className={styles.messageBlock}>
+                                <p className={styles.messageText}>
+                                    {bid.message}
+                                </p>
+                            </div>
+                            <div className={styles.actions}>
+                                <SubmitButton isSubmitting={isSubmitting === bid.id} onClick={() => {
+                                    handleClick(bid.id)
+                                }} className={styles.elaborateButton}>Richiesta elaborata</SubmitButton>
+                            </div>
+                        </li>
+                    }) : <p className={styles.noRequestBlock}> No active requests</p>}
 
 
-            </ul>
-        </div>
+                </ul>
+            </div>}
+
+
+        </>
     )
 }
 
