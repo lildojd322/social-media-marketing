@@ -18,7 +18,7 @@ export async function POST(request) {
         console.error('Upstash Redis Error:', error)
     }
 
-    if (currentRequests > 10) {
+    if (currentRequests > 1) {
         return new NextResponse(
             JSON.stringify({ error: "È possibile inviare solo una richiesta all'ora. Per favore, riprova più tardi." }),
             { status: 429, headers: { 'Content-Type': 'application/json' } }
