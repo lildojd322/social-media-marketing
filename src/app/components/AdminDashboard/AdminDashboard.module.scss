@@ -3,10 +3,14 @@ $text-color: #0b2f1d;
 $accent-green: #1a5c38;
 
 .dashboardContainer {
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%; 
+    max-width: 1000px; 
+    margin: 0 auto; 
     padding: 60px 24px;
     font-family: inherit;
+    display: flex; 
+    flex-direction: column;
+    align-items: stretch;
 
     .title {
         font-size: 32px;
@@ -60,7 +64,10 @@ $accent-green: #1a5c38;
             color: rgba($text-color, 0.8);
             min-width: 40px;
         }
+
+
     }
+
 
     .messageBlock {
         .messageText {
@@ -171,4 +178,44 @@ $accent-green: #1a5c38;
         font-size: 16px;
         user-select: none;
     }
+}
+
+.archivedCard {
+    opacity: 0.55;
+    border-bottom-color: rgba($text-color, 0.1) !important;
+
+
+    div {
+        span {
+            font-weight: 400 !important;
+            color: rgba($text-color, 0.6) !important;
+        }
+    }
+
+    button {
+        display: none;
+    }
+
+
+    :local(.messageText) {
+        color: rgba($text-color, 0.5) !important;
+    }
+}
+
+.messageBlock {
+    .messageText {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba($text-color, 0.8);
+        max-width: 700px;
+    }
+}
+
+.noRequestBlock {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 24px;
+    gap: 16px;
 }

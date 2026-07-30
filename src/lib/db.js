@@ -55,7 +55,7 @@ export const forwardBidToDB = async (email, name, message) => {
 export const updateBidState = async (id) => {
     try {
         const [rows] = await pool.execute(
-            `UPDATE bids SET is_archived = true WHERE id = ?`, [id]
+            `UPDATE requests SET is_archived = true WHERE id = ?`, [id]
         )
 
         return {

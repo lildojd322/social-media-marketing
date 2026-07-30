@@ -3,6 +3,8 @@ import { bidSchema } from '../../../lib/zod'
 import { useState } from 'react'
 import styles from './ContactForm.module.scss'
 import Toast from '../Toast/Toast'
+import SubmitButton from '../SubmitButton/SubmitButton'
+
 
 const ContactForm = () => {
 
@@ -72,11 +74,7 @@ const ContactForm = () => {
                 <input className={styles.nameInput} id="name" name="name" type="text" placeholder="Nome" />
                 <input className={styles.emailInput} id="email" name="email" type="email" placeholder="Email" />
                 <input className={styles.messageInput} id="message" name="message" type="text" placeholder="Messaggio" />
-
-                <button className={`${styles.sendButton} ${isSubmitting ? styles.loading : ''}`} disabled={isSubmitting}>
-                    <span className={styles.textIntoButton}>Invia</span>
-                    <span className={styles.spinner}></span>
-                </button>
+                <SubmitButton style={{ width: 'clamp(280px, 49.63vw, 953px)' }} isSubmitting={isSubmitting}>Invia </SubmitButton>
                 <p className={`${styles.error} ${isError && showToast ? styles.visible : ''}`}>
                     {message}
                 </p>

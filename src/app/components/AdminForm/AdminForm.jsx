@@ -3,6 +3,7 @@ import { use, useState } from 'react'
 import styles from './AdminForm.module.scss'
 import { adminSchema } from '../../../lib/zod'
 import { useRouter } from 'next/navigation'
+import SubmitButton from '../SubmitButton/SubmitButton'
 
 const AdminForm = () => {
     const router = useRouter()
@@ -36,7 +37,7 @@ const AdminForm = () => {
             setError(result.error || 'Registration failed')
 
         }
-        
+
         setIsPending(false)
         setError('')
         event.target.reset()
@@ -48,11 +49,9 @@ const AdminForm = () => {
             <form onSubmit={hadleAction} className={styles.form} >
                 <input type="email" id="email" name="email" placeholder="email" />
                 <input type="password" id="password" name="password" placeholder="password" />
-                <button className={`${styles.sendButton} ${isPending && styles.loading} `}>
-
-                    <span className={styles.textIntoButton}>confermare</span>
-                    <span className={styles.spinner}></span>
-                </button>
+                <SubmitButton style={{ width: '400px' }} isSubmitting={isPending}>
+                    confermare
+                </SubmitButton>
                 {error && <p style={{ color: 'rgb(206, 54, 54)' }}>{error}</p>}
 
             </form>
