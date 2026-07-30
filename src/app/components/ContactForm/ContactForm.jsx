@@ -13,11 +13,12 @@ const ContactForm = () => {
     const [isError, setIsError] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const handleSubmit = async (event) => {
 
+
+
+    const handleSubmit = async (event) => {
         event.preventDefault()
         setShowToast(false)
-
         const formElement = event.currentTarget
         const formData = new FormData(formElement)
         const data = Object.fromEntries(formData.entries())

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { redis } from '@/lib/redis'
+import { forwardBidToDB } from '../../../lib/db'
+
 export async function POST(request) {
     const ip = request.headers.get('x-forwarded-for') || '127.0.0.1'
 
@@ -37,8 +39,11 @@ export async function POST(request) {
             return NextResponse.json({ success: true })
         }
 
-        let appNumber = 0
-        appNumber = await redis.incr('global:applications:total_count')
+        const dbResult = await forwardBidToDB(email, name, message)
+
+
+
+        const appNumber = dbResult.insertId
         const activeCount = await redis.incr('global:applications:active')
 
 
