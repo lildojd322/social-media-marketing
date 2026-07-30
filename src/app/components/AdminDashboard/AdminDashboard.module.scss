@@ -54,6 +54,12 @@ $accent-green: #1a5c38;
             color: rgba($text-color, 0.6);
             font-size: 16px;
         }
+
+        .date {
+            font-weight: 400;
+            color: rgba($text-color, 0.8);
+            min-width: 40px;
+        }
     }
 
     .messageBlock {
@@ -93,7 +99,7 @@ $accent-green: #1a5c38;
 @media (max-width: 600px) {
     .dashboardContainer {
         padding: 40px 16px;
-        
+
         .title {
             font-size: 24px;
             margin-bottom: 24px;
@@ -105,12 +111,12 @@ $accent-green: #1a5c38;
             flex-direction: column;
             align-items: flex-start;
             gap: 4px;
-            
+
             .id {
                 font-size: 16px;
             }
         }
-        
+
         .elaborateButton {
             width: 100%;
         }
@@ -126,23 +132,37 @@ $accent-green: #1a5c38;
     .navLink {
         background: none;
         border: none;
-        padding: 0;
+        padding: 4px 0;
         font-size: 16px;
         font-weight: 400;
-        color: rgba($text-color, 0.7);
+        color: rgba($text-color, 0.6);
         cursor: pointer;
-        transition: color 0.2s ease, text-decoration 0.2s ease;
         text-decoration: none;
+        position: relative;
+        transition: color 0.3s ease;
 
         &:hover {
             color: $text-color;
         }
 
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            background-color: $text-color;
+            transition: width 0.3s ease;
+        }
+
         &.activeLink {
             color: $text-color;
-            font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 4px;
+            font-weight: 500;
+
+            &::after {
+                width: 100%;
+            }
         }
     }
 
