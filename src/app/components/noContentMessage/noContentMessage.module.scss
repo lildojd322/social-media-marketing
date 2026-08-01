@@ -1,0 +1,12 @@
+.noRequestBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 24px;
+    color: #A29C94;
+    gap: 16px;
+    img {
+        opacity: 0.5;
+    }
+}

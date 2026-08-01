@@ -3,7 +3,7 @@ import SubmitButton from '../SubmitButton/SubmitButton'
 import { useEffect, useState } from 'react'
 import styles from './AdminDashboard.module.scss'
 import BidsLoading from '../BidsLoading/BidsLoading'
-
+import NoContentMessage from '../noContentMessage/noContentMessage'
 
 const AdminDashboard = () => {
     const [bids, setBids] = useState([])
@@ -86,9 +86,9 @@ const AdminDashboard = () => {
 
     return (
 
-        <>
-            {loading ? <BidsLoading /> : <div className={styles.dashboardContainer}>
-                <nav className={styles.navigation}>
+        <div>
+            {loading ? <BidsLoading /> : <div style={{display: 'flex',  alignItems: 'center'}} className={styles.dashboardContainer}>
+                <nav  className={styles.navigation}>
                     <div onClick={changeBidsState}
                         className={`${styles.navLink} ${currentBids === 'normal' && styles.activeLink}`}
 
@@ -105,7 +105,7 @@ const AdminDashboard = () => {
                 </nav>
 
                 <h2 className={styles.title}>Richieste non elaborate: {bidsCount}</h2>
-                <ul className={styles.requestList}>
+                <ul   className={styles.requestList}>
                     {filteredBids && filteredBids.length > 0 ? filteredBids.map((bid) => {
                         return <li key={bid.id} className={`${styles.requestCard} ${bid.is_archived && styles.archivedCard}`}>
                             <div className={styles.requestHeader}>
@@ -125,14 +125,14 @@ const AdminDashboard = () => {
                                 }} className={styles.elaborateButton}>Richiesta elaborata</SubmitButton>
                             </div>
                         </li>
-                    }) : <p className={styles.noRequestBlock}> No active requests</p>}
+                    }) : <NoContentMessage>No active requests </NoContentMessage>}
 
 
                 </ul>
             </div>}
 
 
-        </>
+        </div>
     )
 }
 
