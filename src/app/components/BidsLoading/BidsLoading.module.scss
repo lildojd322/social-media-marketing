@@ -12,6 +12,7 @@ $accent-green: #1a5c38;
 .navigation {
     display: flex;
     align-items: center;
+    justify-content: center; /* Центрируем навигацию */
     gap: 12px;
     margin-bottom: 24px;
 
@@ -25,7 +26,7 @@ $accent-green: #1a5c38;
 .titleSkeleton {
     height: 38px;
     width: 320px;
-    margin-bottom: 40px;
+    margin: 0 auto 40px auto; /* Добавлено margin auto по бокам для центрирования */
 }
 
 .requestList {
@@ -34,6 +35,7 @@ $accent-green: #1a5c38;
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Центрируем весь список карточек */
     gap: 24px;
     width: 100%;
 }
@@ -45,6 +47,7 @@ $accent-green: #1a5c38;
     padding-bottom: 24px;
     gap: 16px;
     width: 100%;
+    max-width: 1000px; /* Чтобы карточка не растягивалась шире контейнера */
 
     .requestHeader {
         display: flex;
