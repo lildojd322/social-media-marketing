@@ -7,6 +7,8 @@ export const config = {
 }
 
 async function handleRateLimit(request: NextRequest) {
+
+
     const ip = request.headers.get('x-forwarded-for') ||
         request.headers.get('x-real-ip') ||
         '127.0.0.1'
@@ -52,6 +54,19 @@ export async function proxy(request: NextRequest) {
         if (!adminCookie || adminCookie !== process.env.ADMIN_SECRET_TOKEN) {
             return NextResponse.redirect(new URL('/admin', request.url))
         }
+    }
+    if (pathname.startsWith('/admin/VerifitedForm')) {
+        const pathname = request.nextUrl.pathname
+        const email = request.nextUrl.searchParams.get('email')
+        if (!email) {
+            return NextResponse.redirect(new URL('/admin', request.url))
+        }
+        const hasActiveCode = await redis.exists(`auth_code:${email}`)
+
+        if (!hasActiveCode) {
+            return NextResponse.redirect(new URL('/admin', request.url))
+        }
+
     }
 
     return NextResponse.next()
