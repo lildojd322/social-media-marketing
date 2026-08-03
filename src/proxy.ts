@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server'
 import { redis } from '@/lib/redis'
 
 export const config = {
-    matcher: ['/', '/api/:path*']
+    matcher: ['/', '/api/:path*', '/admin/:path*']
 }
 
 async function handleRateLimit(request: NextRequest) {
@@ -61,6 +61,7 @@ export async function proxy(request: NextRequest) {
         if (!email) {
             return NextResponse.redirect(new URL('/admin', request.url))
         }
+
         const hasActiveCode = await redis.exists(`auth_code:${email}`)
 
         if (!hasActiveCode) {
