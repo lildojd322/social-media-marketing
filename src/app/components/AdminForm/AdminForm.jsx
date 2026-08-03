@@ -26,6 +26,7 @@ const AdminForm = () => {
             setIsPending(false)
             return
         }
+        const email = validation.data.email
 
         const response = await fetch('/api/admin/login', {
             method: 'POST',
@@ -41,7 +42,7 @@ const AdminForm = () => {
         setIsPending(false)
         setError('')
         event.target.reset()
-        router.push('/admin/dashboard')
+        router.push(`/admin/VerifitedForm?email=${email}`)
     }
 
     return (
